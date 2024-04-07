@@ -17,10 +17,12 @@ jobs:
         run: |
           pwd
           ls
+          echo "starting web access..."
+          nmp start
           echo "testing web access..."
           curl -k -i https://api.ipify.org
       - name: "Sleep for 30 seconds"
         uses: jakejarvis/wait-action@master
         with:
-          time: '30s'
+          time: '120s'
  
