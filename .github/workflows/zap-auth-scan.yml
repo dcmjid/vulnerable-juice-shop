@@ -18,7 +18,7 @@ jobs:
           pwd
           ls
           echo "starting web access..."
-          nmp start
+          npm start
           echo "testing web access..."
           curl -k -i https://api.ipify.org
       - name: "Sleep for 30 seconds"
