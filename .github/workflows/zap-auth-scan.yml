@@ -16,6 +16,8 @@ jobs:
         run: |
           pwd
           ls
+          echo "installing web access..."
+          npm install
           echo "starting web access..."
           npm start
           echo "testing web access..."
