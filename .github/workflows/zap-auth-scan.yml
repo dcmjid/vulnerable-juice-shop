@@ -16,12 +16,18 @@ jobs:
         run: |
           pwd
           ls
+          echo "getting piblic ip adress..."
+          echo "-------------------------------------------"
+          echo "-------------------------------------------"
+          curl -k -i https://api.ipify.org
+          echo "-------------------------------------------"
+          echo "-------------------------------------------"
           echo "installing web access..."
           npm install
+          echo "-------------------------------------------"
+          echo "-------------------------------------------"
           echo "starting web access..."
           npm start
-          echo "testing web access..."
-          curl -k -i https://api.ipify.org
       - name: "Sleep for 30 seconds"
         uses: jakejarvis/wait-action@master
         with:
