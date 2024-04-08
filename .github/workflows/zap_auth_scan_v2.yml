@@ -1,0 +1,22 @@
+name: scan autheticated with zap
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+    compile:
+        name: Run my site
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the repo
+            uses: actions/checkout@v4
+          - name: Run the build process with Docker
+            uses: addnab/docker-run-action@v3
+            with:
+                image: dcmjid/juice-shop:snapshot
+                options: -p 3000:3000 --name juice-shop
+                run: |
+                    - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" juice-shop)
+                    - echo $containerip  # Get container IP so we can test it
+                    - curl -k -i https://$containerip:3000  # test connecion to site
