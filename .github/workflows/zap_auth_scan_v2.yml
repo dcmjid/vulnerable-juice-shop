@@ -15,7 +15,7 @@ jobs:
             uses: addnab/docker-run-action@v3
             with:
                 image: dcmjid/juice-shop:snapshot
-                options: -p 3000:3000 --name juice-shop
+                options: -p 3000:3000 --name juice-shop --entrypoint '/juice-shop/build/app.js'
                 run: |
                     - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" juice-shop)
                     - echo $containerip  # Get container IP so we can test it
