@@ -14,10 +14,9 @@ jobs:
           - name: Run the build process with Docker
             uses: addnab/docker-run-action@v3
             with:
-                image: bkimminich/juice-shop
-                shell: bash
-                options: -p 3000:3000 --name juice-shop
+                image: dcmjid/my-php-app:php-app-1.0
+                options: -p 8080:80 --name my-app
                 run: |
-                    - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" juice-shop)
+                    - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" my-app)
                     - echo $containerip  # Get container IP so we can test it
                     - curl -k -i https://$containerip:3000  # test connecion to site
