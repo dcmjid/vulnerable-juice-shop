@@ -15,6 +15,7 @@ jobs:
             uses: addnab/docker-run-action@v3
             with:
                 image: bkimminich/juice-shop
+                shell: bash
                 options: -p 3000:3000 --name juice-shop
                 run: |
                     - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" juice-shop)
