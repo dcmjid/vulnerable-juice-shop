@@ -1,4 +1,4 @@
-name: scan autheticated with zap v2
+name: scan autheticated with zap
 on:
   push:
     branches: [ main ]
@@ -14,9 +14,13 @@ jobs:
           - name: Run the build process with Docker
             uses: addnab/docker-run-action@v3
             with:
-                image: dcmjid/my-php-app:php-app-1.0
-                options: -p 8080:80
+                image: docker:24-dind
                 run: |
-                    - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" my-app)
+                    - ls
+                    - pwd
+                    - echo "starting docker image"
+                    - docker run -d -p 3000:3000 --name juice-shop dcmjid/juice-shop  # 
+                    - echo "checking IP docker image"
+                    - containerip=$(docker inspect -f "{{ .NetworkSettings.Networks.bridge.IPAddress }}" juice-shop)
                     - echo $containerip  # Get container IP so we can test it
                     - curl -k -i https://$containerip:3000  # test connecion to site
