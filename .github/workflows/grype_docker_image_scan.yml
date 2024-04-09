@@ -28,7 +28,15 @@ jobs:
           image: "dcmjid/juice-shop:snapshot"
           fail-build: false
           output-format: sarif
+      - name: prepare rapport name
+        uses: mad9000/actions-find-and-replace-string@5
+        id: findandreplace
+        with:
+          source: ${{ steps.scan.outputs.sarif }}
+          find: './'
+          replace: ''
       - name: Upload vulnerability report
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.scan.outputs.sarif }}
+          name: ${{ steps.findandreplace.outputs.value }}
+          path: .
