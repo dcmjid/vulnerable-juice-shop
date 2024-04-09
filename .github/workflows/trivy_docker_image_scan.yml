@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: Checkout repos
         uses: actions/checkout@v4
-      - name: Free Disk Space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: false
-          swap-storage: true
+      #- name: Free Disk Space
+       # uses: jlumbroso/free-disk-space@main
+        #with:
+         # tool-cache: true
+          #android: true
+          #dotnet: true
+          #haskell: true
+          #large-packages: false
+          #swap-storage: true
       - name: Generate tarball from image
         run: |
            echo " generating image"
@@ -33,7 +33,7 @@ jobs:
            echo " ************************************"
            pwd
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.17.0
+        uses: aquasecurity/trivy-action@0.19.0
         with:
           input: /github/workspace/vuln-image.tar
           format: 'sarif'
