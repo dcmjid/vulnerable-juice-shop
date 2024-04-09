@@ -24,7 +24,7 @@ jobs:
       - name: Generate tarball from image
         run: |
            docker pull dcmjid/juice-shop:snapshot
-           docker save -o vuln-image.tar juice-shop
+           docker save -o vuln-image.tar dcmjid/juice-shop:snapshot
            ls
            echo " generating image"
       - name: Run Trivy vulnerability scanner
