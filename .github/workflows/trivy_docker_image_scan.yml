@@ -25,17 +25,17 @@ jobs:
         run: |
            echo " generating image"
            echo " ************************************"
-           docker build -t docker.io/dcmjid/juice-shop:${{ github.sha }} .
-           #docker pull dcmjid/juice-shop:snapshot
-           #docker save -o vuln-image.tar dcmjid/juice-shop:snapshot
+           #docker build -t docker.io/dcmjid/juice-shop:${{ github.sha }} .
+           docker pull dcmjid/juice-shop:snapshot
+           docker save -o vuln-image.tar dcmjid/juice-shop:snapshot
            ls
            echo " printing file location"
            echo " ************************************"
            pwd
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.19.0
         with:
-          input: 'docker.io/dcmjid/juice-shop:${{ github.sha }}'
+          input: /github/workspace/vuln-image.tar
           format: 'sarif'
           output: 'trivy-results.sarif'
       - name: Upload Trivy scan results to GitHub Security tab
