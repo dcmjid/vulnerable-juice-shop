@@ -23,10 +23,14 @@ jobs:
           swap-storage: true
       - name: Generate tarball from image
         run: |
+           echo " generating image"
+           echo " ************************************"
            docker pull dcmjid/juice-shop:snapshot
            docker save -o vuln-image.tar dcmjid/juice-shop:snapshot
            ls
-           echo " generating image"
+           echo " printing file location"
+           echo " ************************************"
+           pwd
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
