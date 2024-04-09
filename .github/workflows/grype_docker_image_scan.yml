@@ -29,9 +29,8 @@ jobs:
           fail-build: false
           severity-cutoff: critical
           output-format: sarif
-          sarif: grype_scan
       - name: Upload vulnerability report
         uses: actions/upload-artifact@v4
         with:
-          name: grype_scan
+          name: ${{ steps.scan.outputs.sarif }}
           path: .
