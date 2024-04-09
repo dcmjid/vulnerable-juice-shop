@@ -28,12 +28,12 @@ jobs:
            #docker build -t docker.io/dcmjid/juice-shop:${{ github.sha }} .
            docker pull dcmjid/juice-shop:snapshot
            docker save -o vuln-image.tar dcmjid/juice-shop:snapshot
-           ls
+           ls -al
            echo " printing file location"
            echo " ************************************"
            pwd
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.19.0
+        uses: aquasecurity/trivy-action@0.17.0
         with:
           input: /github/workspace/vuln-image.tar
           format: 'sarif'
