@@ -27,6 +27,7 @@ jobs:
         with:
           image: "dcmjid/juice-shop:snapshot"
           fail-build: false
+          severity-cutoff: critical
           output-format: sarif
       - name: prepare rapport name
         uses: mad9000/actions-find-and-replace-string@5
@@ -39,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.findandreplace.outputs.value }}
-          path: .
+          path: results.sarif
