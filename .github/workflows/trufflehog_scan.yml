@@ -1,0 +1,17 @@
+name: Scan secrets Trufflehog 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  ScanSecrets:
+    name: Scan secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+      - name: trufflehog-actions-scan
+        uses: edplato/trufflehog-actions-scan@master
