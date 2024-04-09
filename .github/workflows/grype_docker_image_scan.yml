@@ -31,5 +31,4 @@ jobs:
       - name: Upload vulnerability report
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.scan.outputs.sarif }}.sarif
-          path: .
+          name: ${{ steps.scan.outputs.sarif }}
