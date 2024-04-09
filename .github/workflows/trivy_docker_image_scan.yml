@@ -9,8 +9,6 @@ jobs:
   scan_trivy:
     name: scan_with_trivy
     runs-on: ubuntu-latest
-    container:
-      image: dcmjid/juice-shop:snapshot
     steps:
       - name: Checkout repos
         uses: actions/checkout@v4
@@ -23,6 +21,9 @@ jobs:
           haskell: true
           large-packages: false
           swap-storage: true
+      - name: Generate tarball from image
+        run: |
+           docker pull dcmjid/juice-shop:snapshot
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
