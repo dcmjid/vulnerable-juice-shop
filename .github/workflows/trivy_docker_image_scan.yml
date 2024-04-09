@@ -9,6 +9,8 @@ jobs:
   scan_trivy:
     name: scan_with_trivy
     runs-on: ubuntu-latest
+    container:
+      image: dcmjid/juice-shop:snapshot
     steps:
       - name: Checkout repos
         uses: actions/checkout@v4
